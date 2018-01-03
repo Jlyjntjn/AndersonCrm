@@ -34,6 +34,12 @@ namespace AndersonCRMFunction
             return Employee(eEmployee);
         }
 
+        public Employee Read(string employeeNumber, string pin)
+        {
+            EEmployee eEmployee = _iDEmployee.Read<EEmployee>(a => a.EmployeeNumber == employeeNumber && a.Pin == pin);
+            return Employee(eEmployee);
+        }
+
         public List<Employee> Read()
         {
             List<EEmployee> eEmployees = _iDEmployee.List<EEmployee>(a => true);
@@ -52,9 +58,9 @@ namespace AndersonCRMFunction
             return Employees(eEmployees);
         }
 
-        public List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy)
+        public List<Employee> ReadAssetHistory(int assetId, string sortBy)
         {
-            List<EEmployee> eEmployees = _iDEmployee.Read<EEmployee>(a => a.PeripheralHistories.Any(b => b.PeripheralId == peripheralId), sortBy);
+            List<EEmployee> eEmployees = _iDEmployee.Read<EEmployee>(a => a.AssetHistories.Any(b => b.AssetId == assetId), sortBy);
             return Employees(eEmployees);
         }
 
@@ -85,15 +91,10 @@ namespace AndersonCRMFunction
                 CreatedDate = a.CreatedDate,
                 DateHired = a.DateHired,
                 DateStarted = a.DateStarted,
-                //DateEnded = a.DateEnded,
-                FirstName = a.FirstName,
-                LastName = a.LastName,
-                MiddleName = a.MiddleName,
-                Email = a.Email,
-
+                DateEnded = a.DateEnded,
                 UpdatedDate = a.UpdatedDate,
 
-
+                EmployeeNumber = a.EmployeeNumber,
                 CompanyId = a.CompanyId,
                 CreatedBy = a.CreatedBy,
                 EmployeeId = a.EmployeeId,
@@ -101,10 +102,10 @@ namespace AndersonCRMFunction
                 ManagerEmployeeId = a.ManagerEmployeeId,
                 UpdatedBy = a.UpdatedBy,
 
-                //Email = a.Email,
-                //FirstName = a.FirstName,
-                //LastName = a.LastName,
-                //MiddleName = a.MiddleName
+                Email = a.Email,
+                FirstName = a.FirstName,
+                LastName = a.LastName,
+                MiddleName = a.MiddleName
             }).ToList();
         }
 
@@ -115,14 +116,10 @@ namespace AndersonCRMFunction
                 CreatedDate = employee.CreatedDate,
                 DateHired = employee.DateHired,
                 DateStarted = employee.DateStarted,
-                //DateEnded = employee.DateEnded,
-                
-                FirstName = employee.FirstName,
-                LastName = employee.LastName,
-                MiddleName = employee.MiddleName,
-                Email = employee.Email,
+                DateEnded = employee.DateEnded,
                 UpdatedDate = employee.UpdatedDate,
 
+                EmployeeNumber = employee.EmployeeNumber,
                 CompanyId = employee.CompanyId,
                 CreatedBy = employee.CreatedBy,
                 EmployeeId = employee.EmployeeId,
@@ -130,10 +127,10 @@ namespace AndersonCRMFunction
                 ManagerEmployeeId = employee.ManagerEmployeeId,
                 UpdatedBy = employee.UpdatedBy,
 
-                //Email = employee.Email,
-                //FirstName = employee.FirstName,
-                //LastName = employee.LastName,
-                //MiddleName = employee.MiddleName
+                Email = employee.Email,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                MiddleName = employee.MiddleName
             };
         }
 
@@ -144,9 +141,10 @@ namespace AndersonCRMFunction
                 CreatedDate = eEmployee.CreatedDate,
                 DateHired = eEmployee.DateHired,
                 DateStarted = eEmployee.DateStarted,
-                //DateEnded = eEmployee.DateEnded,
-                
+                DateEnded = eEmployee.DateEnded,
+                UpdatedDate = eEmployee.UpdatedDate,
 
+                EmployeeNumber = eEmployee.EmployeeNumber,
                 CompanyId = eEmployee.CompanyId,
                 CreatedBy = eEmployee.CreatedBy,
                 EmployeeId = eEmployee.EmployeeId,

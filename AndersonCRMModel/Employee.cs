@@ -20,10 +20,12 @@ namespace AndersonCRMModel
         public int JobTitleId { get; set; } 
         public int ManagerEmployeeId { get; set; }
 
+        public string EmployeeNumber { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string MiddleName { get; set; }
+        public string Pin { get; set; }
 
 
         public virtual Department Department { get; set; } 
@@ -31,9 +33,9 @@ namespace AndersonCRMModel
         public virtual JobTitle JobTitle { get; set; } 
         public virtual Team Team { get; set; } 
 
-        public virtual ICollection<EmployeeDepartment> EmployeeDepartments { get; set; } 
-        public virtual ICollection<EmployeeTeam> EmployeeTeams { get; set; } 
-        public virtual ICollection<Peripheral> Peripherals { get; set; } 
-        public virtual ICollection<PeripheralHistory> PeripheralHistories { get; set; } 
+        public virtual ICollection<EmployeeDepartment> EmployeeDepartments { get; set; }
+        public virtual ICollection<EmployeeTeam> EmployeeTeams { get; set; }
+        public virtual ICollection<Asset> Assets { get; set; }
+        public virtual ICollection<AssetHistory> AssetHistories { get; set; }
     }
 }

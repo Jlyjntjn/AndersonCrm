@@ -18,7 +18,7 @@ namespace AndersonCRMFunction
 
         #region CREATE
         public Employee Create(int createdBy, Employee employee)
-        {
+        {           
             EEmployee eEmployee = EEmployee(employee);
             eEmployee.CreatedDate = DateTime.Now;
             eEmployee.CreatedBy = createdBy;
@@ -31,6 +31,12 @@ namespace AndersonCRMFunction
         public Employee Read(int employeeId)
         {
             EEmployee eEmployee = _iDEmployee.Read<EEmployee>(a => a.EmployeeId == employeeId);
+            return Employee(eEmployee);
+        }
+
+        public Employee Read(string  employeeNumber , string pin)
+        {
+            EEmployee eEmployee = _iDEmployee.Read<EEmployee>(a => a.EmployeeNumber == employeeNumber && a.Pin == pin);
             return Employee(eEmployee);
         }
 
@@ -52,9 +58,9 @@ namespace AndersonCRMFunction
             return Employees(eEmployees);
         }
 
-        public List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy)
+        public List<Employee> ReadAssetHistory(int assetId, string sortBy)
         {
-            List<EEmployee> eEmployees = _iDEmployee.Read<EEmployee>(a => a.PeripheralHistories.Any(b => b.PeripheralId == peripheralId), sortBy);
+            List<EEmployee> eEmployees = _iDEmployee.Read<EEmployee>(a => a.AssetHistories.Any(b => b.AssetId == assetId), sortBy);
             return Employees(eEmployees);
         }
 
@@ -85,7 +91,7 @@ namespace AndersonCRMFunction
                 CreatedDate = a.CreatedDate,
                 DateHired = a.DateHired,
                 DateStarted = a.DateStarted,
-                //DateEnded = a.DateEnded,
+                DateEnded = a.DateEnded,
                 UpdatedDate = a.UpdatedDate,
 
                 EmployeeNumber = a.EmployeeNumber,
@@ -99,7 +105,8 @@ namespace AndersonCRMFunction
                 Email = a.Email,
                 FirstName = a.FirstName,
                 LastName = a.LastName,
-                MiddleName = a.MiddleName
+                MiddleName = a.MiddleName,
+                Pin = a.Pin
             }).ToList();
         }
 
@@ -110,7 +117,7 @@ namespace AndersonCRMFunction
                 CreatedDate = employee.CreatedDate,
                 DateHired = employee.DateHired,
                 DateStarted = employee.DateStarted,
-                //DateEnded = employee.DateEnded,
+                DateEnded = employee.DateEnded,
                 UpdatedDate = employee.UpdatedDate,
 
                 EmployeeNumber = employee.EmployeeNumber,
@@ -124,7 +131,8 @@ namespace AndersonCRMFunction
                 Email = employee.Email,
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
-                MiddleName = employee.MiddleName
+                MiddleName = employee.MiddleName,
+                Pin = employee.Pin
             };
         }
 
@@ -136,16 +144,9 @@ namespace AndersonCRMFunction
                 CreatedDate = eEmployee.CreatedDate,
                 DateHired = eEmployee.DateHired,
                 DateStarted = eEmployee.DateStarted,
-                //DateEnded = eEmployee.DateEnded,
-                
-                FirstName = eEmployee.FirstName,
-                LastName = eEmployee.LastName,
-                MiddleName = eEmployee.MiddleName,
-                Email = eEmployee.Email,
+                DateEnded = eEmployee.DateEnded,
                 UpdatedDate = eEmployee.UpdatedDate,
-                
 
-                EmployeeNumber = eEmployee.EmployeeNumber,
                 CompanyId = eEmployee.CompanyId,
                 CreatedBy = eEmployee.CreatedBy,
                 EmployeeId = eEmployee.EmployeeId,
@@ -153,12 +154,17 @@ namespace AndersonCRMFunction
                 ManagerEmployeeId = eEmployee.ManagerEmployeeId,
                 UpdatedBy = eEmployee.UpdatedBy,
 
-                //Email = eEmployee.Email,
-                //FirstName = eEmployee.FirstName,
-                //LastName = eEmployee.LastName,
-                //MiddleName = eEmployee.MiddleName
+                Email = eEmployee.Email,
+                FirstName = eEmployee.FirstName,
+                LastName = eEmployee.LastName,
+                MiddleName = eEmployee.MiddleName           
             };
             return returnEmployee;
+        }
+
+        public List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -11,10 +11,11 @@ namespace AndersonCRMFunction
 
         #region READ
         Employee Read(int employeeId);
+        Employee Read(string employeeNumber, string pin);
         List<Employee> Read();
         List<Employee> Read(int companyId, string sortBy);
         List<Employee> ReadAndersonPhEmployees();
-        List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy);
+        List<Employee> ReadAssetHistory(int assetId, string sortBy);
         #endregion
 
         #region UPDATE
