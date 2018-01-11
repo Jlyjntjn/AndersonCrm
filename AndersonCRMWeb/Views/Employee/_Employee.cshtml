@@ -10,9 +10,10 @@
         <input type="password" class="form-control" id="Pin " name="Pin" maxlength="4" placeholder="Pin Number" value="@Model.Pin ">
     </div>
 
-    <label for="EmployeeNumber">Employee Number</label>
-    <input type="text" class="form-control" id="EmployeeNumber" name="EmployeeNumber" placeholder="EmployeeNumber" value="@Model.EmployeeNumber">
-</div>
+    <div class="form-group">
+        <label for="EmployeeNumber">Employee Number</label>
+        <input type="text" class="form-control" id="EmployeeNumber" name="EmployeeNumber" placeholder="EmployeeNumber" value="@Model.EmployeeNumber">
+    </div>
 
 <div class="form-group">
     <label for="Email">Email</label>
@@ -90,7 +91,7 @@
     <input type="hidden" class="form-control" name="JobTitleId" value="{{model.JobTitle.JobTitleId}}">
 </div>
 
-<div class="form-group" ng-controller="EmployeeController as model" ng-init="model.InitialiseDropdown(@Model.ManagerEmployeeId)">
+<div class="form-group" ng-controller="EmployeeController as model" ng-init="model.InitialiseDropdown(@Model.EmployeeId)">
     <label>Manager</label>
     <ui-select ng-model="model.Employee">
         <ui-select-match allow-clear="true" placeholder="Select Manager...">
@@ -117,7 +118,10 @@
     <input type="date" class="form-control" id="DateStarted" name="DateStarted" placeholder="DateStarted" value="@Model.DateStarted.ToString("yyyy-MM-dd")">
 </div>
 
-
+<div class="form-group">
+    <label for="Image">Image</label>
+    <input type="file" accept="image/x-png,image/gif,image/jpeg" file-model="choice.NewChoiceImages.Attachment" id="ImageFile" name="ImageFile" class="form-control" />
+</div>
 
 <div class="form-group">
     <input type="submit" class="btn btn-primary" value="Submit" />

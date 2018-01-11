@@ -5,15 +5,20 @@
         .module('App')
         .controller('AssetTypeController', AssetTypeController);
 
-    AssetTypeController.$inject = ['$window', 'AssetTypeService'];
+    AssetTypeController.$inject = ['$filter','$window', 'AssetTypeService'];
 
-    function AssetTypeController($window, AssetTypeService) {
+    function AssetTypeController($filter,$window, AssetTypeService) {
         var vm = this;
 
         vm.AssetTypes = [];
 
+        vm.AssetTypeId;
+
+        vm.AssetType;
+
         vm.GoToUpdatePage = GoToUpdatePage;
         vm.Initialise = Initialise;
+        vm.InitialiseDropdown = InitialiseDropdown;
 
         vm.Delete = Delete;
         
@@ -25,10 +30,20 @@
             Read();
         }
 
+
+        function InitialiseDropdown(assetTypeId) {
+            vm.AssetTypeId = assetTypeId;
+            Read();
+        }
+
         function Read() {
             AssetTypeService.Read()
                 .then(function (response) {
                     vm.AssetTypes = response.data;
+                    if (vm.AssetTypeId)
+                    {
+                        UpdateAssetTypes();
+                    }
                 })
                 .catch(function (data, status) {
                     new PNotify({
@@ -41,7 +56,9 @@
 
                 });
         }
-
+        function UpdateAssetTypes() {
+            vm.AssetType = $filter('filter')(vm.AssetTypes, { AsseTypeId: vm.AssetTypeId })[0];
+        }
         function Delete(assetTypeId) {
             AssetTypeService.Delete(assetTypeId)
                 .then(function (response) {

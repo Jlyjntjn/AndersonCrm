@@ -154,14 +154,15 @@ namespace AndersonCRMFunction
                 Email = eEmployee.Email,
                 FirstName = eEmployee.FirstName,
                 LastName = eEmployee.LastName,
-                MiddleName = eEmployee.MiddleName           
+                MiddleName = eEmployee.MiddleName,  
+                Pin = eEmployee.Pin
             };
             return returnEmployee;
         }
 
-        public List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy)
-        {
-            throw new NotImplementedException();
-        }
+        //public List<Employee> ReadPeripheralHistory(int peripheralId, string sortBy)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
