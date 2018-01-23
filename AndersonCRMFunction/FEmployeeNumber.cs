@@ -104,7 +104,8 @@ namespace AndersonCRMFunction
                 Email = a.Email,
                 FirstName = a.FirstName,
                 LastName = a.LastName,
-                MiddleName = a.MiddleName
+                MiddleName = a.MiddleName,
+                Pin = a.Pin
             }).ToList();
         }
 
@@ -128,7 +129,8 @@ namespace AndersonCRMFunction
                 Email = employee.Email,
                 FirstName = employee.FirstName,
                 LastName = employee.LastName,
-                MiddleName = employee.MiddleName
+                MiddleName = employee.MiddleName,
+                Pin = employee.Pin
             };
         }
 
@@ -152,9 +154,15 @@ namespace AndersonCRMFunction
                 Email = eEmployee.Email,
                 FirstName = eEmployee.FirstName,
                 LastName = eEmployee.LastName,
-                MiddleName = eEmployee.MiddleName
+                MiddleName = eEmployee.MiddleName,
+                Pin = eEmployee.Pin
             };
             return returnEmployee;
+        }
+
+        public Employee Read(string employeeNumber)
+        {
+            throw new NotImplementedException();
         }
     }
 }

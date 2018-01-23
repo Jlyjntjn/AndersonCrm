@@ -20,6 +20,7 @@
         vm.Initialise = Initialise;
         vm.InitialiseDropdown = InitialiseDropdown;
 
+
         vm.Delete = Delete;
         
         function GoToUpdatePage(assetTypeId) {
@@ -27,6 +28,10 @@
         } 
 
         function Initialise() {
+            Read();
+        }
+        function InitialiseDropdown(assetTypeId) {
+            vm.AssetTypeId = assetTypeId;
             Read();
         }
 
@@ -56,9 +61,11 @@
 
                 });
         }
+
         function UpdateAssetTypes() {
-            vm.AssetType = $filter('filter')(vm.AssetTypes, { AsseTypeId: vm.AssetTypeId })[0];
+            vm.AssetType = $filter('filter')(vm.AssetTypes, { AssetTypeId: vm.AssetTypeId })[0];
         }
+
         function Delete(assetTypeId) {
             AssetTypeService.Delete(assetTypeId)
                 .then(function (response) {

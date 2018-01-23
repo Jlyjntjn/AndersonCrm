@@ -34,7 +34,18 @@
     <input type="hidden" class="form-control" id="AssetTypeId" name="AssetTypeId" placeholder="AssetTypeId" value="@Model.AssetTypeId">
 </div>
 
-<div class="form-group">
+<div class="form-group" ng-controller="EmployeeController as model" ng-init="model.InitialiseDropdown(@Model.EmployeeId)">
+    <label>Employee</label>
+    <ui-select ng-model="model.Employee">
+        <ui-select-match allow-clear="true" placeholder="Select Manager...">
+            <span ng-bind="$select.selected.FirstName + ' ' + $select.selected.MiddleName + ' ' + $select.selected.LastName"></span>
+        </ui-select-match>
+        <ui-select-choices repeat="employee in (model.Employees | filter: $select.search) track by $index">
+            <span ng-bind="employee.FirstName"></span>
+            <span ng-bind="employee.MiddleName"></span>
+            <span ng-bind="employee.LastName"></span>
+        </ui-select-choices>
+    </ui-select>
     <input type="hidden" class="form-control" id="EmployeeId" name="EmployeeId" placeholder="EmployeeId" value="@Model.EmployeeId">
 </div>
  

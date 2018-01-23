@@ -25,8 +25,7 @@ namespace AndersonCRMModel
         public string LastName { get; set; }
         public string MiddleName { get; set; }
         public string Pin { get; set; }
-        public string ImageUrl { get; set; }
-
+        public string EmployeeImage => System.Configuration.ConfigurationManager.AppSettings["filepath"] + EmployeeId.ToString()+".jpg";
 
 
         public virtual Department Department { get; set; } 
