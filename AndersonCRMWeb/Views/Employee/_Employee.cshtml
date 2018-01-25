@@ -6,11 +6,6 @@
 
 <div class="form-group">
     <div class="form-group">
-        <label for="Pin">Pin</label>
-        <input type="password" class="form-control" id="Pin " name="Pin" maxlength="4" placeholder="Pin Number" value="@Model.Pin ">
-    </div>
-
-    <div class="form-group">
         <label for="EmployeeNumber">Employee Number</label>
         <input type="text" class="form-control" id="EmployeeNumber" name="EmployeeNumber" placeholder="EmployeeNumber" value="@Model.EmployeeNumber">
     </div>
@@ -31,6 +26,11 @@
     <label for="MiddleName">Middle Name</label>
     <input type="text" class="form-control" id="MiddleName" name="MiddleName" placeholder="MiddleName" value="@Model.MiddleName">
 </div>
+
+    <div class="form-group">
+        <label for="Pin">Pin</label>
+        <input type="password" class="form-control" id="Pin " name="Pin" maxlength="4" placeholder="Pin Number" value="@Model.Pin ">
+    </div>
 
 @*<div class="form-group">
     <label for="Pin">Pin</label>
@@ -111,12 +111,15 @@
     <input type="date" class="form-control" id="DateHired" name="DateHired" placeholder="DateHired" value="@Model.DateHired.ToString("yyyy-MM-dd")">
 </div>
 
-
-
 <div class="form-group">
     <label for="DateStarted">DateStarted</label>
     <input type="date" class="form-control" id="DateStarted" name="DateStarted" placeholder="DateStarted" value="@Model.DateStarted.ToString("yyyy-MM-dd")">
 </div>
+
+    <div class="form-group">
+        <label for="DateEnded">DateEnded</label>
+        <input type="date" class="form-control" id="DateEnded" name="DateEnded" placeholder="DateEnded" value="@(Model.DateEnded?.ToString("yyyy-MM-dd") ?? "")">
+    </div>
 
 <div class="form-group">
     <label for="Image">Image</label>
