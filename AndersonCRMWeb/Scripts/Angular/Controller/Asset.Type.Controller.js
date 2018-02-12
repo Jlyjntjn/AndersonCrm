@@ -67,6 +67,8 @@
         }
 
         function Delete(assetTypeId) {
+            var conf = window.confirm("Are you sure you want to delete?");
+            if (conf == true) {
             AssetTypeService.Delete(assetTypeId)
                 .then(function (response) {
                     Read();
@@ -79,7 +81,9 @@
                         hide: true,
                         addclass: "stack-bottomright"
                     });
-                });
+                    });
+            }
+            else { return; false }
         }
 
     }
